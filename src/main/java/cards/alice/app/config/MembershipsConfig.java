@@ -1,6 +1,7 @@
 package cards.alice.app.config;
 
-import cards.alice.common.models.MembershipDto;
+import cards.alice.common.models.CustomerMembershipDto;
+import cards.alice.common.models.OwnerMembershipDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,48 +11,46 @@ import java.util.Map;
 
 @Configuration
 public class MembershipsConfig {
-    @Bean
-    public Map<String, MembershipDto> membershipMap() {
-        final var map = new HashMap<String, MembershipDto>();
-        final OffsetDateTime now = OffsetDateTime.now();
+    private final OffsetDateTime now = OffsetDateTime.now();
 
-        final MembershipDto customerAlpha = MembershipDto.builder()
+    @Bean
+    public Map<String, CustomerMembershipDto> customerMembershipMap() {
+        final var map = new HashMap<String, CustomerMembershipDto>();
+
+        final CustomerMembershipDto customerAlpha = CustomerMembershipDto.builder()
                 .version(0)
                 .displayName("customer-alpha")
                 .createdDate(now)
                 .lastModifiedDate(now)
                 .isDeleted(Boolean.FALSE)
-                .numMaxAccumulatedTotalStores(0)
-                .numMaxCurrentTotalStores(0)
-                .numMaxCurrentActiveStores(0)
-                .numMaxAccumulatedTotalBlueprints(0)
-                .numMaxCurrentTotalBlueprintsPerStore(0)
-                .numMaxCurrentActiveBlueprintsPerStore(0)
-                .numMaxAccumulatedTotalRedeemRules(0)
-                .numMaxCurrentTotalRedeemRulesPerBlueprint(0)
+                .priority(1)
                 .numMaxAccumulatedTotalCards(-1)
                 .numMaxCurrentTotalCards(-1)
                 .numMaxCurrentActiveCards(-1)
                 .build();
+
         map.put(customerAlpha.getDisplayName(), customerAlpha);
 
-        final MembershipDto ownerAlpha = MembershipDto.builder()
+        return map;
+    }
+
+    @Bean
+    public Map<String, OwnerMembershipDto> ownerMembershipMap() {
+        final var map = new HashMap<String, OwnerMembershipDto>();
+
+        final OwnerMembershipDto ownerAlpha = OwnerMembershipDto.builder()
                 .version(0)
                 .displayName("owner-alpha")
                 .createdDate(now)
                 .lastModifiedDate(now)
                 .isDeleted(Boolean.FALSE)
+                .priority(1)
                 .numMaxAccumulatedTotalStores(-1)
                 .numMaxCurrentTotalStores(2)
                 .numMaxCurrentActiveStores(1)
-                .numMaxAccumulatedTotalBlueprints(-1)
                 .numMaxCurrentTotalBlueprintsPerStore(3)
                 .numMaxCurrentActiveBlueprintsPerStore(3)
-                .numMaxAccumulatedTotalRedeemRules(-1)
                 .numMaxCurrentTotalRedeemRulesPerBlueprint(3)
-                .numMaxAccumulatedTotalCards(0)
-                .numMaxCurrentTotalCards(0)
-                .numMaxCurrentActiveCards(0)
                 .build();
         map.put(ownerAlpha.getDisplayName(), ownerAlpha);
 
