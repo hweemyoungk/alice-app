@@ -3,6 +3,7 @@ package cards.alice.app.config;
 import cards.alice.common.config.KeycloakRoleConverter;
 import cards.alice.common.filters.CsrfCookieFilter;
 import cards.alice.common.filters.EmailVerifiedFilter;
+import jakarta.servlet.DispatcherType;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,10 +47,12 @@ public class OAuth2SecurityConfig {
                 .csrf(configurer -> configurer
                         .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Frontend app script should access cookies
+                        .ignoringRequestMatchers("/public/**")
                         .ignoringRequestMatchers("/app/api/*/public/**")
                 )
                 .addFilterBefore(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/app/api/*/public/**").permitAll()
                         .requestMatchers("/app/api/*/admin/**").hasRole("admin")
                         .anyRequest().denyAll()
