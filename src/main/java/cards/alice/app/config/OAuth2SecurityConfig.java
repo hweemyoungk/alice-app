@@ -46,12 +46,12 @@ public class OAuth2SecurityConfig {
                 .csrf(configurer -> configurer
                         .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Frontend app script should access cookies
-                        .ignoringRequestMatchers("/public/**")
+                        .ignoringRequestMatchers("/app/api/*/public/**")
                 )
                 .addFilterBefore(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/app/api/*/public/**").permitAll()
+                        .requestMatchers("/app/api/*/admin/**").hasRole("admin")
                         .anyRequest().denyAll()
                 )
                 // Currently, no endpoint requires JWT but apply default settings
