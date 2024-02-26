@@ -51,6 +51,7 @@ public class MembershipsConfig {
                 .numMaxCurrentTotalBlueprintsPerStore(3)
                 .numMaxCurrentActiveBlueprintsPerStore(3)
                 .numMaxCurrentTotalRedeemRulesPerBlueprint(3)
+                .numMaxCurrentActiveRedeemRulesPerBlueprint(3)
                 .build();
         map.put(ownerAlpha.getDisplayName(), ownerAlpha);
 
