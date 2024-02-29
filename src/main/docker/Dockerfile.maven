@@ -18,8 +18,7 @@ COPY --from=builder /application/spring-boot-loader/ ./
 COPY --from=builder /application/snapshot-dependencies/ ./
 COPY --from=builder /application/application/ ./
 
-# Redeem request service doesn't communicate with Athena, so no need to handle truststore.
-# RUN keytool -importcert -trustcacerts -noprompt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -alias carolcardscert -file BOOT-INF/classes/keystore/carol.cards.crt
+RUN keytool -importcert -trustcacerts -noprompt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -alias carolcardscert -file BOOT-INF/classes/keystore/carol.cards.crt
 # For amazoncorretto:17, replace with following:
 # RUN keytool -importcert -trustcacerts -noprompt -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit -alias carolcardscert -file BOOT-INF/classes/keystore/carol.cards.crt
 
