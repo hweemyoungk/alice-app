@@ -10,7 +10,7 @@
     </parent>
     <groupId>cards.alice</groupId>
     <artifactId>alice-app</artifactId>
-    <version>0.3.4-SNAPSHOT</version>
+    <version>0.3.5</version>
     <name>alice-app</name>
     <description>alice-app</description>
     <properties>

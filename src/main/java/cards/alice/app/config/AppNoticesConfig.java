@@ -23,15 +23,15 @@ public class AppNoticesConfig {
                 .lastModifiedDate(now)
                 .isDeleted(Boolean.FALSE)
                 .displayName("Welcome to Carol Cards!")
-                .description("Congratulations!\nYou are the recipient of the very first notice!\nThis notice cannot be suppressed.")
-                .canSuppress(Boolean.FALSE)
+                .description("Congratulations!\nYou are the recipient of the very first notice!")
+                .canSuppress(Boolean.TRUE)
                 .isSuppressed(Boolean.FALSE)
                 .expirationDate(null)
-                .url("https://carol.cards/public/private-policy")
+                .url("https://carol.cards/public/private-policy.html")
                 .build();
         map.put(firstAppNotice.getId(), firstAppNotice);
 
-        final AppNoticeDto secondAppNotice = AppNoticeDto.builder()
+        /*final AppNoticeDto secondAppNotice = AppNoticeDto.builder()
                 .id(2L)
                 .createdDate(now)
                 .lastModifiedDate(now)
@@ -49,7 +49,7 @@ public class AppNoticesConfig {
                         .withMinute(0)
                         .withSecond(0))
                 .build();
-        map.put(secondAppNotice.getId(), secondAppNotice);
+        map.put(secondAppNotice.getId(), secondAppNotice);*/
 
         return map;
     }

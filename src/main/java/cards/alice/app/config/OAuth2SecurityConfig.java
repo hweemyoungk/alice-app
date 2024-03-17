@@ -3,7 +3,6 @@ package cards.alice.app.config;
 import cards.alice.common.config.KeycloakRoleConverter;
 import cards.alice.common.filters.CsrfCookieFilter;
 import cards.alice.common.filters.EmailVerifiedFilter;
-import jakarta.servlet.DispatcherType;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
